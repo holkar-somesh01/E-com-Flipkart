@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
+const path = require("path")
 require("dotenv").config()
 
 //1 database Connect
@@ -10,6 +11,7 @@ const app = express()
 // 2middleware
 app.use(express.json())
 app.use(express.static("uploads"))
+app.use(express.static(path.join(__dirname, "dist")))
 app.use(cors({
     origin: true,
     credentials: true
@@ -23,6 +25,7 @@ app.use("/api/order", require("./routes/order.routes"))
 app.use("/api/suggest", require("./routes/suggest.routes"))
 
 app.use("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
     res.status(404).json({ message: "Resource Not Found" })
 })
 
