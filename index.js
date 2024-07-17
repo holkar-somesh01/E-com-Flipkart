@@ -26,7 +26,7 @@ app.use("/api/suggest", require("./routes/suggest.routes"))
 
 app.use("*", (req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"))
-    res.status(404).json({ message: "Resource Not Found" })
+    res.status(400).json({ message: "Resource Not Found" })
 })
 
 //4 Error Handeler
