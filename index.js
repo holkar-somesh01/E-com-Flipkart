@@ -34,6 +34,7 @@ app.use((error, req, res, next) => {
     res.status(500).json({ message: error.message || "Something Went Wrong" })
 })
 
+
 // 5 Server Run 
 mongoose.connection.once("open", () => {
     app.listen(process.env.PORT, console.log("SERVER RUNNING"))
